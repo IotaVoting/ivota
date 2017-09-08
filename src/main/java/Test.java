@@ -20,6 +20,6 @@ public class Test {
     }
 
     private static List<String> getAdresses(String seed, int n) throws InvalidAddressException, InvalidSecurityLevelException {
-        return iotaAPI.getNewAddress("AOGTGUP9QNFHRWHWLWWIDNNUXW9KQNKLBHNFETEBPVXLKXDPEHDGLPEIMHMTIEKGQKCPGQXDYIWBVYV9G", 2, 0, true, n, false).getAddresses();
+        return iotaAPI.getNewAddress(seed, 2, 0, true, n, false).getAddresses();
     }
 }
