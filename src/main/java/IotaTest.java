@@ -6,16 +6,17 @@ import jota.model.Transfer;
 import jota.utils.TrytesConverter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class IotaTest {
     private static final String SEED_SERVER = "OWGZAUFGYFMSGZWEMBHS9JODSDQZYHKTVHZYFTASOSZVWVYJVSQJWMFHTQJIOB9RZ9CRRTL9BBVYSOCCS"; //origin seed
     private static final String ADDRESS_SERVER = "WOUWTHCYXOPFOTFSZKKIYFYTHYIETVYZ9RVGSA9QHLVQGIROZXXFSXYRBYFQNSHZCFNHJUWXJFBVCOGWWPBGIZRYI9"; //origin address
-    private static final String ADDRESS_PRIVATE = "HEY9DPVFKAVCYXEKJLMWONVCRZDQBETJGIGXAABFMYSATFJYLYBLEPTYWFWTPRYRIEZQCVFJXDSOBTBJBRSFWIBYED"; //target address
+    private static final String ADDRESS_PRIVATE = "VUBPZZOBWKX9NPRES9VGAAXPREJEXANMDDNSEOCFMJCTUYLFQMLNCRIVAAZVRAGYPUZERRNNWCIYFTILWYLWQRGHR9"; //target address
 
-    private static final String PROTOCOL = "http";
-    private static final String HOST = "hvo-app.de";
-    private static final int PORT = 14265;
+    private static final String PROTOCOL = "https";
+    private static final String HOST = "node.tangle.works";
+    private static final int PORT = 443;
 
     private IotaAPI api;
 
@@ -33,6 +34,7 @@ public class IotaTest {
             List<Transfer> transfers = new ArrayList<>();
             Transfer t = new Transfer(ADDRESS_SERVER, 0, TrytesConverter.toTrytes("some msg"), "999999999999999999999999999");
             transfers.add(t);
+            api.broadcastTransactions();
             SendTransferResponse resp = api.sendTransfer(SEED_SERVER, 2, 9, 15, transfers, null, ADDRESS_PRIVATE);
         } catch (InvalidTrytesException | InvalidSecurityLevelException | InvalidAddressException | InvalidTransferException | NotEnoughBalanceException e) {
             e.printStackTrace();
